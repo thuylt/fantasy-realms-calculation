@@ -39,7 +39,7 @@
     {{#each suits}}
     <div class="card">
       <div class="card-header" role="tab" id="{{@key}}Header" data-toggle="collapse" data-target="#{{@key}}" data-parent="#cards" href="#{{@key}}" aria-expanded="false" aria-controls="{{@key}}">
-        <a>{{@key}}</a>
+        <a>{{replaceText @key}}</a>
       </div>
       <div id="{{@key}}" class="collapse" role="tabpanel" data-parent="#cards" aria-labelledby="{{@key}}Header">
         <ul class="list-group">
@@ -96,7 +96,7 @@
         {{#if card.action}}
         <li class="list-group-item bonus">
             <span id="card-action-text-{{id}}" />
-            <button id="card-action-{{id}}" type="button" class="btn btn-sm btn-primary float-right" onclick="event.stopPropagation(); useCard('{{id}}');">Use</button>
+            <button id="card-action-{{id}}" type="button" class="btn btn-sm btn-primary float-right" onclick="event.stopPropagation(); useCard('{{id}}');">Chọn bài</button>
         </li>
         {{/if}}
         {{#if card.referencesPlayerCount}}
@@ -137,15 +137,14 @@
   <div id="container">
     <header>
       <a href="https://wizkids.com/fantasy-realms/"><img src="img/fantasy-realms.jpg" style="height: 3rem;"></img></a>
-      <img src="img/cursed-hoard.png" style="margin-left: 2.5rem; height: 3rem;"></img>
-      <div style="display: inline-block;">
+      <div style="padding-top:20px">
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" id="ch_items">
-        <label class="custom-control-label" for="ch_items">Cursed Items</label>
+        <label class="custom-control-label" for="ch_items">Vật phẩm bị nguyền rủa</label>
       </div>
       <div class="custom-control custom-switch">
         <input type="checkbox" class="custom-control-input" id="ch_suits">
-        <label class="custom-control-label" for="ch_suits">Buildings/Outsiders/Undead</label>
+        <label class="custom-control-label" for="ch_suits">Bản mở rộng</label>
       </div>
       </div>
       <div id="header-right">
@@ -167,15 +166,45 @@
         </div>
       </div>
     </main>
-    <footer>
-      <div id="wizkids-logo">
-        <a href="https://wizkids.com/"><img src="img/wizkids.png" style="height: 1.75rem;"></img></a>
-      </div>
-      <div id="legal-text">
-        ©2021 WizKids/NECA LLC. WizKids and related marks and logos are trademarks of WizKids. All rights reserved.
-      </div>
-    </footer>
   </div>
+
+  <script>
+    // Đăng ký helper trong Handlebars
+    Handlebars.registerHelper('replaceText', function(text) {
+      if (text === 'Land') {
+        return 'ĐỊA HÌNH';
+      } else if (text === 'Leader') {
+        return 'THỦ LĨNH';
+      } else if (text === 'Wild') {
+        return 'HOANG DÃ';
+      } else if (text === 'Army') {
+        return 'QUÂN ĐỘI';
+      } else if (text === 'Weather') {
+        return 'THỜI TIẾT';
+      } else if (text === 'Flame') {
+        return 'NGỌN LỬA';
+      } else if (text === 'Wizard') {
+        return 'PHÙ THUỶ';
+      } else if (text === 'Beast') {
+        return 'QUÁI THÚ';
+      } else if (text === 'Weapon') {
+        return 'VŨ KHÍ';
+      } else if (text === 'Flood') {
+        return 'LŨ LỤT';
+      } else if (text === 'Artifact') {
+        return 'TẠO TÁC';
+      } else if (text === 'Building') {
+        return 'CÔNG TRÌNH';
+      } else if (text === 'Outsider') {
+        return 'QUỶ THẦN';
+      } else if (text === 'Undead') {
+        return 'XÁC SỐNG';
+      }
+      return text; // Trả về chính nó nếu không có sự thay thế
+    });
+
+    // Đăng ký các sự kiện và render dữ liệu theo cách bạn đã cấu hình
+  </script>
 </body>
 
 <script>
