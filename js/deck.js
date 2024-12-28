@@ -2,41 +2,41 @@ var base = {
   'FR01': {
     id: 'FR01',
     suit: 'Land',
-    name: 'Mountain',
+    name: 'Ngọn núi',
     strength: 9,
-    bonus: '+50 with both <span class="weather">Smoke</span> and <span class="flame">Wildfire</span>. <br />CLEARS the Penalty on all <span class="flood">Floods</span>.',
+    bonus: 'THƯỞNG: +50 nếu có đủ hai lá <span class="weather">Khói</span> và <span class="flame">Cháy rừng</span>. <br />XOÁ toàn bộ phạt của <span class="flood">LŨ LỤT</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Smoke') && hand.contains('Wildfire') ? 50 : 0;
+      return hand.contains('Khói') && hand.contains('Cháy rừng') ? 50 : 0;
     },
     clearsPenalty: function(card) {
       return card.suit === 'Flood';
     },
     relatedSuits: ['Flood'],
-    relatedCards: ['Smoke', 'Wildfire']
+    relatedCards: ['Khói', 'Cháy rừng']
   },
   'FR02': {
     id: 'FR02',
     suit: 'Land',
-    name: 'Cavern',
+    name: 'Hang động',
     strength: 6,
-    bonus: '+25 with <span class="army">Dwarvish Infantry</span> or <span class="beast">Dragon</span>. <br />CLEARS the Penalty on all <span class="weather">Weather</span>.',
+    bonus: 'THƯỞNG: +25 nếu có lá <span class="army">Bộ binh người lùn</span> hoặc <span class="beast">Rồng</span>. <br />XOÁ toàn bộ phạt của <span class="weather">THỜI TIẾT</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Dwarvish Infantry') || hand.contains('Dragon') ? 25 : 0;
+      return hand.contains('Bộ binh người lùn') || hand.contains('Rồng') ? 25 : 0;
     },
     clearsPenalty: function(card) {
       return card.suit === 'Weather';
     },
     relatedSuits: ['Weather'],
-    relatedCards: ['Dwarvish Infantry', 'Dragon']
+    relatedCards: ['Bộ binh người lùn', 'Rồng']
   },
   'FR03': {
     id: 'FR03',
     suit: 'Land',
-    name: 'Bell Tower',
+    name: 'Tháp chuông',
     strength: 8,
-    bonus: '+15 with any one <span class="wizard">Wizard</span>.',
+    bonus: 'THƯỞNG: +15 nếu có <span class="wizard">PHÁP SƯ</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return hand.containsSuit('Wizard') ? 15 : 0;
@@ -47,22 +47,22 @@ var base = {
   'FR04': {
     id: 'FR04',
     suit: 'Land',
-    name: 'Forest',
+    name: 'Rừng rậm',
     strength: 7,
-    bonus: '+12 for each <span class="beast">Beast</span> and <span class="army">Elven Archers</span>.',
+    bonus: 'THƯỞNG: +12 cho mỗi lá <span class="beast">QUÁI THÚ</span> và <span class="army">Cung thủ Elven</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return 12 * hand.countSuit('Beast') + (hand.contains('Elven Archers') ? 12 : 0);
+      return 12 * hand.countSuit('Beast') + (hand.contains('Cung thủ Elven') ? 12 : 0);
     },
     relatedSuits: ['Beast'],
-    relatedCards: ['Elven Archers']
+    relatedCards: ['Cung thủ Elven']
   },
   'FR05': {
     id: 'FR05',
     suit: 'Land',
-    name: 'Earth Elemental',
+    name: 'Nguyên tố đất',
     strength: 4,
-    bonus: '+15 for each other <span class="land">Land</span>.',
+    bonus: 'THƯỞNG: +15 cho mỗi lá <span class="land">ĐỊA HÌNH</span> khác.',
     penalty: null,
     bonusScore: function(hand) {
       return 15 * hand.countSuitExcluding('Land', this.id);
@@ -73,9 +73,9 @@ var base = {
   'FR06': {
     id: 'FR06',
     suit: 'Flood',
-    name: 'Fountain of Life',
+    name: 'Suối nguồn sự sống',
     strength: 1,
-    bonus: 'Add the base strength of any one <span class="weapon">Weapon</span>, <span class="flood">Flood</span>, <span class="flame">Flame</span>, <span class="land">Land</span> or <span class="weather">Weather</span> in your hand.',
+    bonus: 'THƯỞNG: Cộng thêm điểm cơ bản từ một lá <span class="weapon">VŨ KHÍ</span>, <span class="flood">LŨ LỤT</span>, <span class="flame">NGỌN LỬA</span>, <span class="land">ĐỊA HÌNH</span> hoặc <span class="weather">THỜI TIẾT</span> mà bạn có.',
     penalty: null,
     bonusScore: function(hand) {
       var max = 0;
@@ -94,10 +94,10 @@ var base = {
   'FR07': {
     id: 'FR07',
     suit: 'Flood',
-    name: 'Swamp',
+    name: 'Đầm lầy',
     strength: 18,
     bonus: null,
-    penalty: '-3 for each <span class="army">Army</span> and <span class="flame">Flame</span>.',
+    penalty: 'PHẠT: -3 cho mỗi lá <span class="army">QUÂN ĐỘI</span> và <span class="flame">NGỌN LỬA</span>.',
     penaltyScore: function(hand) {
       var penaltyCards = hand.countSuit('Flame');
       if (!(hand.containsId('FR25') || hand.containsId('CH19') || hand.containsId('FR41'))) { // these clear the word 'Army' from the penalty
@@ -111,35 +111,35 @@ var base = {
   'FR08': {
     id: 'FR08',
     suit: 'Flood',
-    name: 'Great Flood',
+    name: 'Đại hồng thuỷ',
     strength: 32,
     bonus: null,
-    penalty: 'BLANKS all <span class="army">Armies</span>, all <span class="land">Lands</span> except <span class="land">Mountain</span>, and all <span class="flame">Flames</span> except <span class="flame">Lightning</span>.',
+    penalty: 'PHẠT: HUỶ toàn bộ <span class="army">QUÂN ĐỘI</span>, toàn bộ <span class="land">ĐỊA HÌNH</span> ngoại trừ <span class="land">Ngọn núi</span>, và toàn bộ <span class="flame">NGỌN LỬA</span> ngoại trừ <span class="flame">Sét</span>.',
     blanks: function(card, hand) {
       return (card.suit === 'Army' && !(hand.containsId('FR25') || hand.containsId('CH19') || hand.containsId('FR41'))) || // these clear the word 'Army' from the penalty
-        (card.suit === 'Land' && card.name !== 'Mountain') ||
-        (card.suit === 'Flame' && card.name !== 'Lightning');
+        (card.suit === 'Land' && card.name !== 'Ngọn núi') ||
+        (card.suit === 'Flame' && card.name !== 'Sét');
     },
     relatedSuits: ['Army', 'Land', 'Flame'],
-    relatedCards: ['Mountain', 'Lightning']
+    relatedCards: ['Ngọn núi', 'Sét']
   },
   'FR09': {
     id: 'FR09',
     suit: 'Flood',
-    name: 'Island',
+    name: 'Đảo',
     strength: 14,
-    bonus: 'CLEARS the Penalty on any one <span class="flood">Flood</span> or <span class="flame">Flame</span>.',
+    bonus: 'XOÁ phạt của một lá <span class="flood">LŨ LỤT</span> hoặc <span class="flame">NGỌN LỬA</span>.',
     penalty: null,
-    action: 'Pick a Flood or Flame from your hand to clear.',
+    action: 'Chọn một lá LŨ LỤT hoặc NGỌN LỬA trong tay bạn để xoá phạt.',
     relatedSuits: ['Flood', 'Flame'],
     relatedCards: []
   },
   'FR10': {
     id: 'FR10',
     suit: 'Flood',
-    name: 'Water Elemental',
+    name: 'Nguyên tố nước',
     strength: 4,
-    bonus: '+15 for each other <span class="flood">Flood</span>.',
+    bonus: 'THƯỞNG: +15 cho mỗi lá <span class="flood">LŨ LỤT</span> khác.',
     penalty: null,
     bonusScore: function(hand) {
       return 15 * hand.countSuitExcluding('Flood', this.id);
@@ -150,26 +150,26 @@ var base = {
   'FR11': {
     id: 'FR11',
     suit: 'Weather',
-    name: 'Rainstorm',
+    name: 'Mưa bão',
     strength: 8,
-    bonus: '+10 for each <span class="flood">Flood</span>.',
-    penalty: 'BLANKS all <span class="flame">Flames</span> except <span class="flame">Lightning</span>.',
+    bonus: 'THƯỞNG: +10 cho mỗi lá <span class="flood">LŨ LỤT</span>.',
+    penalty: 'PHẠT: HUỶ toàn bộ lá <span class="flame">NGỌN LỬA</span> ngoại trừ <span class="flame">Sét</span>.',
     bonusScore: function(hand) {
       return 10 * hand.countSuit('Flood');
     },
     blanks: function(card, hand) {
-      return card.suit === 'Flame' && card.name !== 'Lightning';
+      return card.suit === 'Flame' && card.name !== 'Sét';
     },
     relatedSuits: ['Flood', 'Flame'],
-    relatedCards: ['Lightning']
+    relatedCards: ['Sét']
   },
   'FR12': {
     id: 'FR12',
     suit: 'Weather',
-    name: 'Blizzard',
+    name: 'Bão tuyết',
     strength: 30,
     bonus: null,
-    penalty: 'BLANKS all <span class="flood">Floods</span>. <br />-5 for each <span class="army">Army</span>, <span class="leader">Leader</span>, <span class="beast">Beast</span>, and <span class="flame">Flame</span>.',
+    penalty: 'PHẠT: HUỶ toàn bộ lá <span class="flood">LŨ LỤT</span>. <br />-5 cho mỗi lá <span class="army">QUÂN ĐỘI</span>, <span class="leader">THỦ LĨNH</span>, <span class="beast">QUÁI THÚ</span>, và <span class="flame">NGỌN LỬA</span>.',
     penaltyScore: function(hand) {
       var penaltyCards = hand.countSuit('Leader') + hand.countSuit('Beast') + hand.countSuit('Flame');
       if (!(hand.containsId('FR25') || hand.containsId('CH19'))) { // clears the word 'Army' from the penalty
@@ -186,10 +186,10 @@ var base = {
   'FR13': {
     id: 'FR13',
     suit: 'Weather',
-    name: 'Smoke',
+    name: 'Khói',
     strength: 27,
     bonus: null,
-    penalty: 'This card is BLANKED unless with at least one <span class="flame">Flame</span>.',
+    penalty: 'PHẠT: TỰ HUỶ nếu không có <span class="flame">NGỌN LỬA</span>.',
     blankedIf: function(hand) {
       return !hand.containsSuit('Flame');
     },
@@ -199,22 +199,22 @@ var base = {
   'FR14': {
     id: 'FR14',
     suit: 'Weather',
-    name: 'Whirlwind',
+    name: 'Lốc xoáy',
     strength: 13,
-    bonus: '+40 with <span class="weather">Rainstorm</span> and either <span class="weather">Blizzard</span> or <span class="flood">Great Flood</span>.',
+    bonus: 'THƯỞNG: +40 nếu có đủ: <span class="weather">Mưa bão</span> và <span class="weather">Bão tuyết</span> HOẶC <span class="weather">Mưa bão</span> và <span class="flood">Đại hồng thuỷ</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Rainstorm') && (hand.contains('Blizzard') || hand.contains('Great Flood')) ? 40 : 0;
+      return hand.contains('Mưa bão') && (hand.contains('Bão tuyết') || hand.contains('Đại hồng thuỷ')) ? 40 : 0;
     },
-    relatedSuits: ['Rainstorm'],
-    relatedCards: ['Blizzard', 'Great Flood']
+    relatedSuits: ['Mưa bão'],
+    relatedCards: ['Bão tuyết', 'Đại hồng thuỷ']
   },
   'FR15': {
     id: 'FR15',
     suit: 'Weather',
-    name: 'Air Elemental',
+    name: 'Nguyên tố khí',
     strength: 4,
-    bonus: '+15 for each other <span class="weather">Weather</span>.',
+    bonus: 'THƯỞNG: +15 cho mỗi lá <span class="weather">THỜI TIẾT</span> khác.',
     penalty: null,
     bonusScore: function(hand) {
       return 15 * hand.countSuitExcluding('Weather', this.id);
@@ -225,37 +225,37 @@ var base = {
   'FR16': {
     id: 'FR16',
     suit: 'Flame',
-    name: 'Wildfire',
+    name: 'Cháy rừng',
     strength: 40,
     bonus: null,
-    penalty: 'BLANKS all cards except <span class="flame">Flames</span>, <span class="wizard">Wizards</span>, <span class="weather">Weather</span>, <span class="weapon">Weapons</span>, <span class="artifact">Artifacts</span>, <span class="land">Mountain</span>, <span class="flood">Great Flood</span>, <span class="flood">Island</span>, <span class="beast">Unicorn</span> and <span class="beast">Dragon</span>.',
+    penalty: 'PHẠT: HUỶ toàn bộ bài, ngoại trừ <span class="flame">NGỌN LỬA</span>, <span class="wizard">PHÙ THUỶ</span>, <span class="weather">THỜI TIẾT</span>, <span class="weapon">VŨ KHÍ</span>, <span class="artifact">TẠO TÁC</span>, <span class="land">Ngọn núi</span>, <span class="flood">Đại hồng thuỷ</span>, <span class="flood">Đảo</span>, <span class="beast">Unicorn</span> và <span class="beast">Rồng</span>.',
     blanks: function(card, hand) {
       return !(card.suit === 'Flame' || card.suit === 'Wizard' || card.suit === 'Weather' ||
-        card.suit === 'Weapon' || card.suit === 'Artifact' || card.suit === 'Wild' || card.name === 'Mountain' ||
-        card.name === 'Great Flood' || card.name === 'Island' || card.name === 'Unicorn' || card.name === 'Dragon');
+        card.suit === 'Weapon' || card.suit === 'Artifact' || card.suit === 'Wild' || card.name === 'Ngọn núi' ||
+        card.name === 'Đại hồng thuỷ' || card.name === 'Đảo' || card.name === 'Unicorn' || card.name === 'Dragon');
     },
     relatedSuits: allSuits(),
-    relatedCards: ['Mountain', 'Great Flood', 'Island', 'Unicorn', 'Dragon']
+    relatedCards: ['Ngọn núi', 'Đại hồng thuỷ', 'Đảo', 'Unicorn', 'Dragon']
   },
   'FR17': {
     id: 'FR17',
     suit: 'Flame',
-    name: 'Candle',
+    name: 'Ngọn nến',
     strength: 2,
-    bonus: '+100 with <span class="artifact">Book of Changes</span>, <span class="land">Bell Tower</span>, and any one <span class="wizard">Wizard</span>.',
+    bonus: 'THƯỞNG: +100 nếu có đủ <span class="artifact">Kinh dịch</span>, <span class="land">Tháp chuông</span>, và một lá <span class="wizard">PHÁP SƯ</span> bất kì.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Book of Changes') && hand.contains('Bell Tower') && hand.containsSuit('Wizard') ? 100 : 0;
+      return hand.contains('Kinh dịch') && hand.contains('Tháp chuông') && hand.containsSuit('Wizard') ? 100 : 0;
     },
     relatedSuits: ['Wizard'],
-    relatedCards: ['Book of Changes', 'Bell Tower']
+    relatedCards: ['Kinh dịch', 'Tháp chuông']
   },
   'FR18': {
     id: 'FR18',
     suit: 'Flame',
-    name: 'Forge',
+    name: 'Lò rèn',
     strength: 9,
-    bonus: '+9 for each <span class="weapon">Weapon</span> and <span class="artifact">Artifact</span>.',
+    bonus: 'THƯỞNG: +9 cho mỗi lá <span class="weapon">VŨ KHÍ</span> và <span class="artifact">TẠO TÁC</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return 9 * (hand.countSuit('Weapon') + hand.countSuit('Artifact'));
@@ -266,22 +266,22 @@ var base = {
   'FR19': {
     id: 'FR19',
     suit: 'Flame',
-    name: 'Lightning',
+    name: 'Sét',
     strength: 11,
-    bonus: '+30 with <span class="weather">Rainstorm</span>.',
+    bonus: 'THƯỞNG: +30 nếu có lá <span class="weather">Mưa bão</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Rainstorm') ? 30 : 0;
+      return hand.contains('Mưa bão') ? 30 : 0;
     },
     relatedSuits: [],
-    relatedCards: ['Rainstorm']
+    relatedCards: ['Mưa bão']
   },
   'FR20': {
     id: 'FR20',
     suit: 'Flame',
-    name: 'Fire Elemental',
+    name: 'Nguyên tố lửa',
     strength: 4,
-    bonus: '+15 for each other <span class="flame">Flame</span>.',
+    bonus: 'THƯỞNG: +15 cho mỗi lá <span class="flame">NGỌN LỬA</span> khác.',
     penalty: null,
     bonusScore: function(hand) {
       return 15 * hand.countSuitExcluding('Flame', this.id);
@@ -292,10 +292,10 @@ var base = {
   'FR21': {
     id: 'FR21',
     suit: 'Army',
-    name: 'Knights',
+    name: 'Hiệp sĩ',
     strength: 20,
     bonus: null,
-    penalty: '-8 unless with at least one <span class="leader">Leader</span>.',
+    penalty: 'PHẠT: -8 nếu không có <span class="leader">THỦ LĨNH</span>.',
     penaltyScore: function(hand) {
       return hand.containsSuit('Leader') ? 0 : -8;
     },
@@ -305,9 +305,9 @@ var base = {
   'FR22': {
     id: 'FR22',
     suit: 'Army',
-    name: 'Elven Archers',
+    name: 'Cung thủ Elven',
     strength: 10,
-    bonus: '+5 if no <span class="weather">Weather</span>.',
+    bonus: 'THƯỞNG: +5 nếu không có <span class="weather">THỜI TIẾT</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return hand.containsSuit('Weather') ? 0 : 5;
@@ -318,10 +318,10 @@ var base = {
   'FR23': {
     id: 'FR23',
     suit: 'Army',
-    name: 'Light Cavalry',
+    name: 'Kỵ binh nhẹ',
     strength: 17,
     bonus: null,
-    penalty: '-2 for each <span class="land">Land</span>.',
+    penalty: 'PHẠT: -2 cho mỗi lá <span class="land">ĐỊA HÌNH</span>.',
     penaltyScore: function(hand) {
       return -2 * hand.countSuit('Land');
     },
@@ -332,10 +332,10 @@ var base = {
   'FR24': {
     id: 'FR24',
     suit: 'Army',
-    name: 'Dwarvish Infantry',
+    name: 'Bộ binh người lùn',
     strength: 15,
     bonus: null,
-    penalty: '-2 for each other <span class="army">Army</span>.',
+    penalty: 'PHẠT: -2 cho mỗi lá <span class="army">QUÂN ĐỘI</span> khác.',
     penaltyScore: function(hand) {
       if (!(hand.containsId('FR25') || hand.containsId('CH19'))) { // clears the word 'Army' from the penalty
         return -2 * hand.countSuitExcluding('Army', this.id);
@@ -348,9 +348,9 @@ var base = {
   'FR25': {
     id: 'FR25',
     suit: 'Army',
-    name: 'Rangers',
+    name: 'Cảnh binh',
     strength: 5,
-    bonus: '+10 for each <span class="land">Land</span>. <br />CLEARS the word <span class="army">Army</span> from all Penalties.',
+    bonus: 'THƯỞNG: +10 cho mỗi lá <span class="land">ĐỊA HÌNH</span>. <br />XOÁ từ <span class="army">QUÂN ĐỘI</span> khỏi tất cả các PHẠT (ngoại trừ lá Khinh khí cầu).',
     penalty: null,
     bonusScore: function(hand) {
       return 10 * hand.countSuit('Land');
@@ -361,9 +361,9 @@ var base = {
   'FR26': {
     id: 'FR26',
     suit: 'Wizard',
-    name: 'Collector',
+    name: 'Chuyên gia sưu tầm',
     strength: 7,
-    bonus: '+10 if three different cards in same suit, +40 if four different cards in same suit, +100 if five different cards in same suit.',
+    bonus: 'THƯỞNG: +10 cho ba lá cùng bộ, +40 cho bốn lá cùng bộ, +100 cho năm lá cùng bộ. (Không tính sao chép từ Song trùng)',
     penalty: null,
     bonusScore: function(hand) {
       var bySuit = {};
@@ -393,9 +393,9 @@ var base = {
   'FR27': {
     id: 'FR27',
     suit: 'Wizard',
-    name: 'Beastmaster',
+    name: 'Thuần thú sư',
     strength: 9,
-    bonus: '+9 for each <span class="beast">Beast</span>. <br />CLEARS the Penalty on all <span class="beast">Beasts</span>.',
+    bonus: 'THƯỞNG: +9 cho mỗi lá <span class="beast">QUÁI THÚ</span>. <br />XOÁ toàn bộ phạt của lá <span class="beast">QUÁI THÚ</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return 9 * hand.countSuit('Beast');
@@ -409,9 +409,9 @@ var base = {
   'FR28': {
     id: 'FR28',
     suit: 'Wizard',
-    name: 'Necromancer',
+    name: 'Triệu hồi sư',
     strength: 3,
-    bonus: 'At the end of the game, you may take one <span class="army">Army</span>, <span class="leader">Leader</span>, <span class="wizard">Wizard</span>, or <span class="beast">Beast</span> from the discard pile and add it to your hand.',
+    bonus: 'THƯỞNG: Vào cuối game, có thể lấy một lá <span class="army">QUÂN ĐỘI</span>, <span class="leader">THỦ LĨNH</span>, <span class="wizard">PHÁP SƯ</span>, hoặc <span class="beast">QUÁI THÚ</span> từ khu bài lật.',
     penalty: null,
     relatedSuits: ['Army', 'Leader', 'Wizard', 'Beast'],
     relatedCards: [],
@@ -420,10 +420,10 @@ var base = {
   'FR29': {
     id: 'FR29',
     suit: 'Wizard',
-    name: 'Warlock Lord',
+    name: 'Chúa tể pháp sư',
     strength: 25,
     bonus: null,
-    penalty: '-10 for each <span class="leader">Leader</span> and other <span class="wizard">Wizard</span>.',
+    penalty: 'PHẠT: -10 cho mỗi lá <span class="leader">THỦ LĨNH</span> và <span class="wizard">PHÁP SƯ</span> khác.',
     penaltyScore: function(hand) {
       return -10 * (hand.countSuit('Leader') + hand.countSuitExcluding('Wizard', this.id));
     },
@@ -433,9 +433,9 @@ var base = {
   'FR30': {
     id: 'FR30',
     suit: 'Wizard',
-    name: 'Enchantress',
+    name: 'Phù thuỷ',
     strength: 5,
-    bonus: '+5 for each <span class="land">Land</span>, <span class="weather">Weather</span>, <span class="flood">Flood</span>, and <span class="flame">Flame</span>.',
+    bonus: 'THƯỞNG: +5 cho mỗi lá <span class="land">ĐỊA HÌNH</span>, <span class="weather">THỜI TIẾT</span>, <span class="flood">LŨ LỤT</span>, hoặc <span class="flame">NGỌN LỬA</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return 5 * (hand.countSuit('Land') + hand.countSuit('Weather') + hand.countSuit('Flood') + hand.countSuit('Flame'));
@@ -446,35 +446,35 @@ var base = {
   'FR31': {
     id: 'FR31',
     suit: 'Leader',
-    name: 'King',
+    name: 'Vua',
     strength: 8,
-    bonus: '+5 for each <span class="army">Army</span>. <br />OR +20 for each <span class="army">Army</span> if with <span class="leader">Queen</span>.',
+    bonus: 'THƯỞNG: +5 cho mỗi lá <span class="army">QUÂN ĐỘI</span>. <br /> HOẶC +20 cho mỗi lá <span class="army">QUÂN ĐỘI</span> nếu có lá <span class="leader">Hoàng hậu</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return (hand.contains('Queen') ? 20 : 5) * hand.countSuit('Army');
+      return (hand.contains('Hoàng hậu') ? 20 : 5) * hand.countSuit('Army');
     },
     relatedSuits: ['Army'],
-    relatedCards: ['Queen']
+    relatedCards: ['Hoàng hậu']
   },
   'FR32': {
     id: 'FR32',
     suit: 'Leader',
-    name: 'Queen',
+    name: 'Hoàng hậu',
     strength: 6,
-    bonus: '+5 for each <span class="army">Army</span>. <br />OR +20 for each <span class="army">Army</span> if with <span class="leader">King</span>.',
+    bonus: '+THƯỞNG: +5 cho mỗi lá <span class="army">QUÂN ĐỘI</span>. <br /> HOẶC +20 cho mỗi lá <span class="army">QUÂN ĐỘI</span> nếu có lá <span class="leader">Vua</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return (hand.contains('King') ? 20 : 5) * hand.countSuit('Army');
+      return (hand.contains('Vua') ? 20 : 5) * hand.countSuit('Army');
     },
     relatedSuits: ['Army'],
-    relatedCards: ['King']
+    relatedCards: ['Vua']
   },
   'FR33': {
     id: 'FR33',
     suit: 'Leader',
-    name: 'Princess',
+    name: 'Công chúa',
     strength: 2,
-    bonus: '+8 for each <span class="army">Army</span>, <span class="wizard">Wizard</span>, and other <span class="leader">Leader</span>.',
+    bonus: 'THƯỞNG: +8 cho mỗi lá <span class="army">QUÂN ĐỘI</span>, <span class="wizard">PHÙ THUỶ</span>, và <span class="leader">THỦ LĨNH</span> khác.',
     penalty: null,
     bonusScore: function(hand) {
       return 8 * (hand.countSuit('Army') + hand.countSuit('Wizard') + hand.countSuitExcluding('Leader', this.id));
@@ -485,9 +485,9 @@ var base = {
   'FR34': {
     id: 'FR34',
     suit: 'Leader',
-    name: 'Warlord',
+    name: 'Lãnh chúa',
     strength: 4,
-    bonus: 'The sum of the base strength of all <span class="army">Armies</span>.',
+    bonus: 'THƯỞNG: Cộng thêm tổng điểm cơ bản từ tất cả các lá <span class="army">QUÂN ĐỘI</span>.',
     penalty: null,
     bonusScore: function(hand) {
       var total = 0;
@@ -504,10 +504,10 @@ var base = {
   'FR35': {
     id: 'FR35',
     suit: 'Leader',
-    name: 'Empress',
+    name: 'Nữ vương',
     strength: 15,
-    bonus: '+10 for each <span class="army">Army</span>.',
-    penalty: '-5 for each other <span class="leader">Leader</span>.',
+    bonus: 'THƯỞNG: +10 cho mỗi lá <span class="army">QUÂN ĐỘI</span>.',
+    PHẠT: '-5 cho mỗi lá <span class="leader">THỦ LĨNH</span> khác.',
     bonusScore: function(hand) {
       return 10 * hand.countSuit('Army');
     },
@@ -522,13 +522,13 @@ var base = {
     suit: 'Beast',
     name: 'Unicorn',
     strength: 9,
-    bonus: '+30 with <span class="leader">Princess</span>. <br />OR +15 with <span class="leader">Empress</span>, <span class="leader">Queen</span>, or <span class="leader">Enchantress</span>.',
+    bonus: 'THƯỞNG: +30 nếu có <span class="leader">Công chúa</span>. <br />HOẶC +15 nếu có <span class="leader">Nữ vương</span>, <span class="leader">Hoàng hậu</span>, hoặc <span class="leader">Phù thuỷ</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Princess') ? 30 : (hand.contains('Empress') || hand.contains('Queen') || hand.contains('Enchantress')) ? 15 : 0;
+      return hand.contains('Công chúa') ? 30 : (hand.contains('Nữ vương') || hand.contains('Hoàng hậu') || hand.contains('Phù thuỷ')) ? 15 : 0;
     },
     relatedSuits: [],
-    relatedCards: ['Princess', 'Empress', 'Queen', 'Enchantress']
+    relatedCards: ['Công chúa', 'Nữ vương', 'Hoàng hậu', 'Phù thuỷ']
   },
   'FR37': {
     id: 'FR37',
@@ -536,7 +536,7 @@ var base = {
     name: 'Basilisk',
     strength: 35,
     bonus: null,
-    penalty: 'BLANKS all <span class="army">Armies</span>, <span class="leader">Leaders</span>, and other <span class="beast">Beasts</span>.',
+    penalty: 'PHẠT: HUỶ toàn bộ <span class="army">QUÂN ĐỘI</span>, <span class="leader">THỦ LĨNH</span>, và <span class="beast">QUÁI THÚ</span> khác.',
     blanks: function(card, hand) {
       return (card.suit === 'Army' && !(hand.containsId('FR25') || hand.containsId('CH19'))) || // clears the word 'Army' from the penalty
         card.suit === 'Leader' ||
@@ -548,9 +548,9 @@ var base = {
   'FR38': {
     id: 'FR38',
     suit: 'Beast',
-    name: 'Warhorse',
+    name: 'Ngựa chiến',
     strength: 6,
-    bonus: '+14 with any <span class="leader">Leader</span> or <span class="wizard">Wizard</span>.',
+    bonus: 'THƯỞNG: +14 nếu có <span class="leader">THỦ LĨNH</span> hoặc <span class="wizard">PHÁP SƯ</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return hand.containsSuit('Leader') || hand.containsSuit('Wizard') ? 14 : 0;
@@ -561,10 +561,10 @@ var base = {
   'FR39': {
     id: 'FR39',
     suit: 'Beast',
-    name: 'Dragon',
+    name: 'Rồng',
     strength: 30,
     bonus: null,
-    penalty: '-40 unless with at least one <span class="wizard">Wizard</span>.',
+    penalty: '-40 nếu không có <span class="wizard">PHÁP SƯ</span>.',
     penaltyScore: function(hand) {
       return hand.containsSuit('Wizard') ? 0 : -40;
     },
@@ -576,21 +576,21 @@ var base = {
     suit: 'Beast',
     name: 'Hydra',
     strength: 12,
-    bonus: '+28 with <span class="flood">Swamp</span>.',
+    bonus: 'THƯỞNG: +28 nếu có lá <span class="flood">Đầm lầy</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Swamp') ? 28 : 0;
+      return hand.contains('Đầm lầy') ? 28 : 0;
     },
     relatedSuits: [],
-    relatedCards: ['Swamp']
+    relatedCards: ['Đầm lầy']
   },
   'FR41': {
     id: 'FR41',
     suit: 'Weapon',
-    name: 'Warship',
+    name: 'Chiến thuyền',
     strength: 23,
-    bonus: 'CLEARS the word <span class="army">Army</span> from all Penalties of all <span class="flood">Floods</span>.',
-    penalty: 'BLANKED unless with at least one <span class="flood">Flood</span>.',
+    bonus: 'THƯỞNG: XOÁ chữ <span class="army">QUÂN ĐỘI</span> khỏi toàn bộ phạt của các lá <span class="flood">LŨ LỤT</span>.',
+    penalty: 'PHẠT: TỰ HUỶ nếu không có <span class="flood">LŨ LỤT</span>.',
     blankedIf: function(hand) {
       return !hand.containsSuit('Flood');
     },
@@ -600,9 +600,9 @@ var base = {
   'FR42': {
     id: 'FR42',
     suit: 'Weapon',
-    name: 'Magic Wand',
+    name: 'Gậy phép',
     strength: 1,
-    bonus: '+25 with any one <span class="wizard">Wizard</span>.',
+    bonus: 'THƯỞNG: +25 nếu có <span class="wizard">PHÁP SƯ</span>.',
     penalty: null,
     bonusScore: function(hand) {
       return hand.containsSuit('Wizard') ? 25 : 0;
@@ -613,36 +613,36 @@ var base = {
   'FR43': {
     id: 'FR43',
     suit: 'Weapon',
-    name: 'Sword of Keth',
+    name: 'Kiếm thánh',
     strength: 7,
-    bonus: '+10 with any one <span class="leader">Leader</span>. <br />OR +40 with both <span class="leader">Leader</span> and <span class="artifact">Shield of Keth</span>.',
+    bonus: 'THƯỞNG: +10 nếu có <span class="leader">THỦ LĨNH</span>. <br />HOẶC +40 nếu có <span class="leader">THỦ LĨNH</span> và <span class="artifact">Khiên thánh</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.containsSuit('Leader') ? (hand.contains('Shield of Keth') ? 40 : 10) : 0;
+      return hand.containsSuit('Leader') ? (hand.contains('Khiên thánh') ? 40 : 10) : 0;
     },
     relatedSuits: ['Leader'],
-    relatedCards: ['Shield of Keth']
+    relatedCards: ['Khiên thánh']
   },
   'FR44': {
     id: 'FR44',
     suit: 'Weapon',
-    name: 'Elven Longbow',
+    name: 'Cung Elven',
     strength: 3,
-    bonus: '+30 with <span class="army">Elven Archers</span>, <span class="leader">Warlord</span> or <span class="wizard">Beastmaster</span>.',
+    bonus: 'THƯỞNG: +30 nếu có <span class="army">Cung thủ Elven</span>, <span class="leader">Lãnh chúa</span> hoặc <span class="wizard">Thuần thú sư</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.contains('Elven Archers') || hand.contains('Warlord') || hand.contains('Beastmaster') ? 30 : 0;
+      return hand.contains('Cung thủ Elven') || hand.contains('Lãnh chúa') || hand.contains('Thuần thú sư') ? 30 : 0;
     },
     relatedSuits: [],
-    relatedCards: ['Elven Archers', 'Warlord', 'Beastmaster']
+    relatedCards: ['Cung thủ Elven', 'Lãnh chúa', 'Thuần thú sư']
   },
   'FR45': {
     id: 'FR45',
     suit: 'Weapon',
-    name: 'War Dirigible',
+    name: 'Khinh khí cầu',
     strength: 35,
     bonus: null,
-    penalty: 'BLANKED unless with at least one <span class="army">Army</span>. <br />BLANKED with any <span class="weather">Weather</span>.',
+    penalty: 'PHẠT: TỰ HUỶ nếu không có <span class="army">QUÂN ĐỘI</span>. <br />TỰ HUỶ nếu có <span class="weather">THỜI TIẾT</span>.',
     blankedIf: function(hand) {
       return !hand.containsSuit('Army') || hand.containsSuit('Weather');
     },
@@ -652,22 +652,22 @@ var base = {
   'FR46': {
     id: 'FR46',
     suit: 'Artifact',
-    name: 'Shield of Keth',
+    name: 'Khiên thánh',
     strength: 4,
-    bonus: '+15 with any one <span class="leader">Leader</span>. <br />OR +40 with both <span class="leader">Leader</span> and <span class="weapon">Sword of Keth</span>.',
+    bonus: 'THƯỞNG: +15 nếu có <span class="leader">THỦ LĨNH</span>. <br />HOẶC +40 nếu có <span class="leader">THỦ LĨNH</span> và <span class="weapon">Kiếm thánh</span>.',
     penalty: null,
     bonusScore: function(hand) {
-      return hand.containsSuit('Leader') ? (hand.contains('Sword of Keth') ? 40 : 15) : 0;
+      return hand.containsSuit('Leader') ? (hand.contains('Kiếm thánh') ? 40 : 15) : 0;
     },
     relatedSuits: ['Leader'],
-    relatedCards: ['Sword of Keth']
+    relatedCards: ['Kiếm thánh']
   },
   'FR47': {
     id: 'FR47',
     suit: 'Artifact',
-    name: 'Gem of Order',
+    name: 'Ngọc trật tự',
     strength: 5,
-    bonus: '+10 for 3-card run, +30 for 4-card run, +60 for 5-card run, +100 for 6-card run, +150 for 7-card run. <br />(This refers to the base strength numbers.)',
+    bonus: 'THƯỞNG: +10 cho sảnh 3, +30 cho sảnh 4, +60 cho sảnh 5, +100 cho sảnh 6, +150 cho sảnh 7. <br />(Tính theo điểm cơ bản của các lá bài.)',
     penalty: null,
     bonusScore: function(hand) {
       var strengths = hand.nonBlankedCards().map(card => card.strength);
@@ -703,9 +703,9 @@ var base = {
   'FR48': {
     id: 'FR48',
     suit: 'Artifact',
-    name: 'World Tree',
+    name: 'Cây thế giới',
     strength: 2,
-    bonus: '+50 if every non-BLANKED card is a different suit.',
+    bonus: 'THƯỞNG: +70 nếu tất cả bài trên tay thuộc các bộ khác nhau.',
     penalty: null,
     bonusScore: function(hand) {
       var suits = [];
@@ -715,7 +715,7 @@ var base = {
         }
         suits.push(card.suit);
       }
-      return 50;
+      return 70;
     },
     relatedSuits: allSuits(),
     relatedCards: []
@@ -723,20 +723,20 @@ var base = {
   'FR49': {
     id: 'FR49',
     suit: 'Artifact',
-    name: 'Book of Changes',
+    name: 'Kinh dịch',
     strength: 3,
-    bonus: 'You may change the suit of one other card. Its name, bonuses and penalties remain the same.',
+    bonus: 'THƯỞNG: Có thể đổi bộ của một lá bài khác. Tên, thưởng và phạt của lá bài đó không thay đổi.',
     penalty: null,
-    action: 'Pick a suit and a target card from your hand.',
-    relatedSuits: [], // empty because the main reason for relatedSuits is to determine how to use 'Book of Changes'
+    action: 'Chọn một bộ sau đó chọn một lá bài trên tay bạn để đổi sang bộ đó.',
+    relatedSuits: [], // empty because the main reason for relatedSuits is to determine how to use 'Kinh dịch'
     relatedCards: []
   },
   'FR50': {
     id: 'FR50',
     suit: 'Artifact',
-    name: 'Protection Rune',
+    name: 'Đá bảo hộ',
     strength: 1,
-    bonus: 'CLEARS the Penalty on all cards.',
+    bonus: 'XOÁ toàn bộ phạt',
     penalty: null,
     clearsPenalty: function(card) {
       return true;
@@ -747,33 +747,33 @@ var base = {
   'FR51': {
     id: 'FR51',
     suit: 'Wild',
-    name: 'Shapeshifter',
+    name: 'Kẻ biến hình',
     strength: 0,
-    bonus: '<b>Shapeshifter</b> may duplicate the name and suit of any one <span class="artifact">Artifact</span>, <span class="leader">Leader</span>, <span class="wizard">Wizard</span>, <span class="weapon">Weapon</span> or <span class="beast">Beast</span> in the game. <br />Does not take the bonus, penalty, or base strength of the card duplicated.',
+    bonus: 'Có thể biến thành tên và bộ của bất kỳ lá <span class="artifact">TẠO TÁC</span>, <span class="leader">THỦ LĨNH</span>, <span class="wizard">PHÁP SƯ</span>, <span class="weapon">VŨ KHÍ</span> hoặc <span class="beast">QUÁI THÚ</span> nào trong game. <br />Nhưng không có thưởng, phạt và điểm cơ bản.',
     penalty: null,
-    action: 'Pick a target card to duplicate.',
+    action: 'Chọn một lá để sao chép.',
     relatedSuits: ['Artifact', 'Leader', 'Wizard', 'Weapon', 'Beast'].sort(),
     relatedCards: []
   },
   'FR52': {
     id: 'FR52',
     suit: 'Wild',
-    name: 'Mirage',
+    name: 'Ảo ảnh',
     strength: 0,
-    bonus: '<b>Mirage</b> may duplicate the name and suit of any one <span class="army">Army</span>, <span class="land">Land</span>, <span class="weather">Weather</span>, <span class="flood">Flood</span> or <span class="flame">Flame</span> in the game. <br />Does not take the bonus, penalty, or base strength of the card duplicated.',
+    bonus: 'Có thể biến thành tên và bộ của bất kỳ lá <span class="army">QUÂN ĐỘI</span>, <span class="land">ĐỊA HÌNH</span>, <span class="weather">THỜI TIẾT</span>, <span class="flood">LŨ LỤT</span> hoặc <span class="flame">NGỌN LỬA</span> nào trong game. <br />Nhưng không có thưởng, phạt và điểm cơ bản.',
     penalty: null,
-    action: 'Pick a target card to duplicate.',
+    action: 'Chọn một lá để sao chép.',
     relatedSuits: ['Army', 'Land', 'Weather', 'Flood', 'Flame'].sort(),
     relatedCards: []
   },
   'FR53': {
     id: 'FR53',
     suit: 'Wild',
-    name: 'Doppelgänger',
+    name: 'Song trùng',
     strength: 0,
-    bonus: '<b>Doppelgänger</b> may duplicate the name, base strength, suit, and penalty BUT NOT BONUS of any one other card in your hand.',
+    bonus: 'Có thể sao chép tên, bộ, điểm cơ bản, và phạt (không sao chép thưởng) của bất kỳ lá nào mà bạn đang có.',
     penalty: null,
-    action: 'Pick a card from your hand to duplicate.',
+    action: 'Chọn một lá trong tay bạn để sao chép.',
     relatedSuits: [],
     relatedCards: []
   },
@@ -954,7 +954,7 @@ var cursedHoard = {
     name: 'Demon',
     strength: 45,
     bonus: null,
-    penalty: 'For every non-<span class="outsider">Outsider</span> card: If that card is the only card you have in that suit, then that card is BLANKED. <br />This takes place before any other BLANKING.',
+    penalty: 'For every non-<span class="outsider">Outsider</span> card: If that card is the only card you have in that suit, then that card is BLANKED. <br />This takes place before any other BLANVua.',
     blanks: function(card, hand) {
       return card.suit !== 'Outsider' && hand.countSuit(card.suit) === 1;
     },
@@ -964,7 +964,7 @@ var cursedHoard = {
   'CH11': {
     id: 'CH11',
     suit: 'Undead',
-    name: 'Dark Queen',
+    name: 'Dark Hoàng hậu',
     strength: 10,
     bonus: '+5 for each <span class="land">Land</span>, <span class="flood">Flood</span>, <span class="flame">Flame</span>, <span class="weather">Weather</span>, and <span class="beast">Unicorn</span> in the discard area.',
     penalty: null,
@@ -1034,7 +1034,7 @@ var cursedHoard = {
   'CH16': {
     id: 'CH16',
     suit: 'Building',
-    name: 'Bell Tower',
+    name: 'Tháp chuông',
     replaces: 'FR03',
     strength: 8,
     bonus: '+15 with any one <span class="wizard">Wizard</span> or <span class="undead">Undead</span>.',
@@ -1048,7 +1048,7 @@ var cursedHoard = {
   'CH17': {
     id: 'CH17',
     suit: 'Flood',
-    name: 'Fountain of Life',
+    name: 'Suối nguồn sự sống',
     replaces: 'FR06',
     strength: 1,
     bonus: 'Add the base strength of any one <span class="building">Building</span>, <span class="weapon">Weapon</span>, <span class="flood">Flood</span>, <span class="flame">Flame</span>, <span class="land">Land</span> or <span class="weather">Weather</span> in your hand.',
@@ -1070,7 +1070,7 @@ var cursedHoard = {
   'CH18': {
     id: 'CH18',
     suit: 'Flood',
-    name: 'Great Flood',
+    name: 'Đại hồng thuỷ',
     replaces: 'FR08',
     strength: 32,
     bonus: null,
@@ -1078,16 +1078,16 @@ var cursedHoard = {
     blanks: function(card, hand) {
       return (card.suit === 'Army' && !(hand.containsId('FR25') || hand.containsId('CH19') || hand.containsId('FR41'))) || // these clear the word 'Army' from the penalty
         (card.suit === 'Building') ||
-        (card.suit === 'Land' && card.name !== 'Mountain') ||
-        (card.suit === 'Flame' && card.name !== 'Lightning');
+        (card.suit === 'Land' && card.name !== 'Ngọn núi') ||
+        (card.suit === 'Flame' && card.name !== 'Sét');
     },
     relatedSuits: ['Army', 'Building', 'Land', 'Flame'],
-    relatedCards: ['Mountain', 'Lightning']
+    relatedCards: ['Ngọn núi', 'Sét']
   },
   'CH19': {
     id: 'CH19',
     suit: 'Army',
-    name: 'Rangers',
+    name: 'Cảnh binh',
     replaces: 'FR25',
     strength: 5,
     bonus: '+10 for each <span class="land">Land</span> and <span class="building">Building</span>. <br />CLEARS the word <span class="army">Army</span> from all Penalties.',
