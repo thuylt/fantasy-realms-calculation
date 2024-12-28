@@ -1,15 +1,7 @@
 $(document).ready(function() {
-  configureSelectedPlayerCount();
-  configureSelectedExpansions();
   showCards();
   getDiscardFromQueryString();
   getHandFromQueryString();
-  $('#ch_items').change(function() {
-    toggleCursedHoardItems();
-  });
-  $('#ch_suits').change(function() {
-    toggleCursedHoardSuits();
-  });
 });
 
 var click = new Audio('sound/click.mp3');
@@ -21,7 +13,7 @@ var bookOfChangesSelectedCard = NONE;
 var bookOfChangesSelectedSuit = undefined;
 var cursedHoardItems = false;
 var cursedHoardSuits = false;
-var playerCount = 2;
+var playerCount = 5;
 var inputDiscardArea = false;
 
 function configureSelectedExpansions() {

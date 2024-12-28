@@ -780,9 +780,9 @@ var base = {
   'FR54': {
     id: 'FR54',
     suit: 'Wizard',
-    name: 'Jester',
+    name: 'Chúa hề',
     strength: 3,
-    bonus: '+3 for each other card with an odd base value. <br />OR +50 if entire hand has odd base values.',
+    bonus: 'THƯỞNG: +3 cho mỗi lá có điểm cơ bản là số lẻ. <br />HOẶC +50 nếu toàn bộ bài trên tay có điểm cơ bản là số lẻ.',
     penalty: null,
     bonusScore: function(hand) {
       var oddCount = 0;
