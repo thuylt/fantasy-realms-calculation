@@ -42,7 +42,6 @@ header {
   position: fixed;
   z-index: 1;
   background-color: #6f292b;
-  height: 4rem;
   padding: 0.5rem;
   width: 100%;
   max-width: 60rem;
@@ -54,7 +53,7 @@ header label {
 }
 
 main {
-  padding-top: 4rem;
+  padding-top: 12rem;
   min-height: 100%;
   display: flex;
   -webkit-box-flex: 1;
@@ -131,7 +130,7 @@ li.Land {
   background-color: var(--land-color);
 }
 
-span.land {
+span.Land {
   color: var(--land-color);
 }
 
